@@ -9,7 +9,7 @@ let tasks = [
   { id: 4, title: "Redux", isDone: false }
 ]
 
-useState(tasks)
+useState(tasks) 
 
 function removeTasks(id: number) {
   tasks = tasks.filter(t => t.id !== id)

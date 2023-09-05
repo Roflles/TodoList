@@ -1,15 +1,17 @@
 import React from "react"
+import {FilterValuesType} from "./App"
 
-type TaskType = {
-    id: number,
-    title: string,
+export type TaskType = {
+    id: string
+    title: string
     isDone: boolean
 }
 
 type PropsType = {
     title: string
     tasks: Array<TaskType>
-    removeTasks: Function
+    removeTasks: (id: string) => void
+    chacngeFilter: (value: FilterValuesType) => void
 }
 
 export function TodoList(props: PropsType) {
@@ -30,9 +32,9 @@ export function TodoList(props: PropsType) {
                 }
             </ul>
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={() => { props.chacngeFilter("all") }}>All</button>
+                <button onClick={() => { props.chacngeFilter("active") }}>Active</button>
+                <button onClick={() => { props.chacngeFilter("completed") }}>Completed</button>
             </div>
         </div>
     )

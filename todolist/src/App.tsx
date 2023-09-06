@@ -3,7 +3,7 @@ import './App.css';
 import { TaskType, TodoList } from './Todolist';
 import { v1 } from 'uuid';
 
-export type FilterValuesType = "all" | "completed" | "active"; 
+export type FilterValuesType = "all" | "completed" | "active";
 
 function App() {
 
@@ -14,12 +14,22 @@ function App() {
     { id: v1(), title: "React", isDone: false },
     { id: v1(), title: "Redux", isDone: false }
   ]);
- 
+
   console.log(tasks)
 
   function removeTasks(id: string) {
-    let filteredTasks = tasks.filter(t => t.id !== id)
+    let filteredTasks = tasks.filter(t => t.id !== id);
     setTasks(filteredTasks);
+  }
+
+  function addTask(title: string) {
+    let newTask = {
+      id: v1(),
+      title: title,
+      isDone: false
+    };
+    let newTasks = [newTask, ...tasks];
+    setTasks(newTasks);
   }
 
   let [filter, setFilter] = useState<FilterValuesType>("all")
@@ -42,6 +52,7 @@ function App() {
         tasks={tasksForTodolist}
         removeTasks={removeTasks}
         chacngeFilter={chacngeFilter}
+        addTask={addTask}
       />
     </div>
   );

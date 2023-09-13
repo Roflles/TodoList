@@ -32,6 +32,14 @@ function App() {
     setTasks(newTasks);
   }
 
+  function changeStatus(tasksId: string, isDone: boolean) {
+    let task = tasks.find( t => t.id === tasksId );
+    if (task) {
+      task.isDone = !task.isDone;
+    }
+    setTasks(tasks);
+  }
+
   let [filter, setFilter] = useState<FilterValuesType>("all")
 
   function chacngeFilter(value: FilterValuesType) {

@@ -36,6 +36,7 @@ export function TodoList(props: PropsType) {
     const onAllClickHandler = () => { props.chacngeFilter("all") }
     const onActiveClickHandler = () => { props.chacngeFilter("active") }
     const onCompletedClickHandler = () => { props.chacngeFilter("completed") }
+    
 
     return (
         <div>
@@ -50,11 +51,13 @@ export function TodoList(props: PropsType) {
             <ul>
                 {
                     props.tasks.map(t => {
-                        const onRemoveTasks = () => {
-                            props.removeTasks(t.id)
-                        }
+                        const onRemoveTasks = () => { props.removeTasks(t.id) }
+                        const onChangeHandler = () => { console.log("what to chance") }
                         return <li key={t.id}>
-                            <input type="checkbox" checked={t.isDone} />
+                            <input type="checkbox"
+                                onChange={onChangeHandler}
+                                checked={t.isDone}
+                            />
                             <span>{t.title}</span>
                             <button onClick={onRemoveTasks}>x</button>
                         </li>

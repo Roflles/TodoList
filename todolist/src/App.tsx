@@ -14,8 +14,7 @@ function App() {
     { id: v1(), title: "React", isDone: false },
     { id: v1(), title: "Redux", isDone: false }
   ]);
-
-  console.log(tasks)
+  let [filter, setFilter] = useState<FilterValuesType>("all")
 
   function removeTasks(id: string) {
     let filteredTasks = tasks.filter(t => t.id !== id);
@@ -33,14 +32,14 @@ function App() {
   }
 
   function changeStatus(tasksId: string, isDone: boolean) {
-    let task = tasks.find( t => t.id === tasksId );
+    let task = tasks.find(t => t.id === tasksId);
     if (task) {
-      task.isDone = !task.isDone;
+      task.isDone = isDone;
     }
-    setTasks(tasks);
+    setTasks([...tasks]);
   }
 
-  let [filter, setFilter] = useState<FilterValuesType>("all")
+  
 
   function chacngeFilter(value: FilterValuesType) {
     setFilter(value);
@@ -61,6 +60,8 @@ function App() {
         removeTasks={removeTasks}
         chacngeFilter={chacngeFilter}
         addTask={addTask}
+        changeTaskStatus={changeStatus}
+        filter={filter}
       />
     </div>
   );

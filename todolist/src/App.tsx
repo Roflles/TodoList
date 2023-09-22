@@ -3,6 +3,7 @@ import './App.css';
 import { TaskType, TodoList } from './Todolist';
 import { v1 } from 'uuid';
 import { serialize } from 'v8';
+import { AddItemForm } from './AddItemForm';
 
 export type FilterValuesType = "all" | "completed" | "active";
 type TodolistType = {
@@ -77,6 +78,7 @@ function App() {
 
   return (
     <div className="App">
+      <AddItemForm addItem={ () => {}} id={"ddsdfs"} />
       {
         todolists.map((tl) => {
           let tasksForTodolist = tasksObj[tl.id];

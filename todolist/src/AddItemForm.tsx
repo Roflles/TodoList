@@ -1,8 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react"
 
 type PropsType = {
-    addItem: (title: string, todoListId: string) => void
-    id: string
+    addItem: (title: string) => void
 }
 
 export function AddItemForm(props: PropsType) {
@@ -15,7 +14,7 @@ export function AddItemForm(props: PropsType) {
         if (title.trim() === "") {
             return setError("Title is error");
         }
-        props.addItem(title.trim(), props.id);
+        props.addItem(title.trim());
         setTitle("");
     }
 

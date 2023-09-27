@@ -3,6 +3,7 @@ import './App.css';
 import { TaskType, TodoList } from './Todolist';
 import { v1 } from 'uuid';
 import { AddItemForm } from './AddItemForm';
+import { title } from 'process';
 
 export type FilterValuesType = "all" | "completed" | "active";
 type TodolistType = {
@@ -38,6 +39,15 @@ function App() {
     if (task) {
       task.isDone = isDone;
       setTasks({...tasksObj});
+    }
+  }
+
+  function changeTaskTitle(tasksId: string, newTitle: string, todolistId: string) {
+    let tasks = tasksObj[todolistId];
+    let task = tasks.find(t => t.id === tasksId);
+    if (task) {
+      task.title = newTitle;
+      setTasks({ ...tasksObj });
     }
   }
 
@@ -118,6 +128,7 @@ function App() {
             changeTaskStatus={changeStatus}
             filter={tl.filter}
             removeTodolist={removeTodolist}
+            changeTaskTitle={changeTaskTitle}
           />
         })
       }

@@ -3,7 +3,7 @@ import './App.css';
 import { TaskType, TodoList } from './Todolist';
 import { v1 } from 'uuid';
 import { AddItemForm } from './AddItemForm';
-import { title } from 'process';
+
 
 export type FilterValuesType = "all" | "completed" | "active";
 type TodolistType = {
@@ -23,6 +23,14 @@ function App() {
     let filteredTasks = tasks.filter(t => t.id !== id);
     tasksObj[todolistId] = filteredTasks;
     setTasks({...tasksObj});
+  }
+
+  function changeTodolistTitle(id: string, newTitle: string) {
+    const todolist = todolists.find(tl => tl.id === id);
+    if (todolist) {
+      todolist.title = newTitle;
+      setTodolists([...todolists]);
+    }
   }
 
   function addTask(title: string, todolistId: string) {
@@ -129,6 +137,7 @@ function App() {
             filter={tl.filter}
             removeTodolist={removeTodolist}
             changeTaskTitle={changeTaskTitle}
+            changeTodolistTitle={changeTodolistTitle}
           />
         })
       }

@@ -4,7 +4,7 @@ import { AddItemForm } from "./AddItemForm"
 import { EditableSpan } from "./EditableSpan"
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { Button } from "@mui/material";
+import { Button, Checkbox } from "@mui/material";
 
 export type TaskType = {
     id: string
@@ -65,7 +65,8 @@ export function TodoList(props: PropsType) {
                         }
 
                         return <li key={t.id} className={t.isDone ? "is-done" : ""}>
-                            <input type="checkbox"
+                            <Checkbox 
+                                color="secondary"
                                 onChange={onChangeStatusHandler}
                                 checked={t.isDone}
                             />
@@ -79,13 +80,13 @@ export function TodoList(props: PropsType) {
                 }
             </ul>
             <div>
-                <Button className={props.filter === 'all' ? "active-filter" : ""}
+                <Button  color={"inherit"} variant={props.filter === 'all' ? "contained" : "text"}
                     onClick={onAllClickHandler}>All
                 </Button>
-                <Button className={props.filter === 'active' ? "active-filter" : ""}
+                <Button variant={props.filter === 'active' ? "contained" : "text"}
                     onClick={onActiveClickHandler}>Active
                 </Button>
-                <Button className={props.filter === 'completed' ? "active-filter" : ""}
+                <Button color={"error"} variant={props.filter === 'completed' ? "contained" : "text"}
                     onClick={onCompletedClickHandler}>Completed
                 </Button>
             </div>

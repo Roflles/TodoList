@@ -3,6 +3,13 @@ import './App.css';
 import { TaskType, TodoList } from './Todolist';
 import { v1 } from 'uuid';
 import { AddItemForm } from './AddItemForm';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 
 export type FilterValuesType = "all" | "completed" | "active";
@@ -113,6 +120,22 @@ function App() {
 
   return (
     <div className="App">
+      <AppBar>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6">
+            News
+          </Typography>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+
       <AddItemForm addItem={addTodolist} />
       {
         todolists.map((tl) => {
